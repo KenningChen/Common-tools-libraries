@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -19,9 +20,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.kenning.kcutil.R
+import com.kenning.kcutil.utils.math.toFloat_
 import com.kenning.kcutil.utils.math.toInt_
 import com.kenning.kcutil.utils.other.ScreenUtil
 import com.kenning.kcutil.utils.other.getColorResource
+import com.kenning.kcutil.utils.other.getDimensionResource
 import com.kenning.kcutil.utils.other.getDrawableResource
 import com.kenning.kcutil.utils.recyclerviewextend.BaseRecyclerViewHolder
 import com.kenning.kcutil.utils.recyclerviewextend.RecycleViewDivider
@@ -197,8 +200,10 @@ class BaseDialog : Dialog {
             titleline.visibility = View.GONE
         }
 
+        main.setEachCornerRadius(tools.radius(), tools.radius(), tools.radius(), tools.radius())
 
         tvDialogName.setTextColor(getColorResource(title_textcolor))
+        tvDialogName.setTextSize(TypedValue.COMPLEX_UNIT_PX, tools.titleTextSize)
         tvDialogName.setNormalBackgroundColor(getColorResource(title_backgroundcolor))
         tvDialogName.setEachCornerRadius(tools.radius(), tools.radius(), 0, 0)
         bottomview.setEachCornerRadius(0, 0, tools.radius(), tools.radius())

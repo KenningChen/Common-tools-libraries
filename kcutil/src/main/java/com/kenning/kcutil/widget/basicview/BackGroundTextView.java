@@ -194,4 +194,13 @@ public class BackGroundTextView extends AppCompatTextView {
         }
         setBackground(mNormalBackground);
     }
+
+    public void setBackGroundAndStroke(int mBackgroundColor,
+                                       int mStrokeColor,
+                                       int mStrokeWidth) {
+        mNormalBackground.setColor(mBackgroundColor);
+        mNormalBackground.setStroke(mStrokeWidth, mStrokeColor, mStrokeDashWidth, mStrokeDashGap);
+        setBackground(mNormalBackground);
+    }
+
 }

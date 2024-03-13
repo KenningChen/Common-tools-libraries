@@ -6,6 +6,9 @@ import android.util.Log
 import androidx.annotation.*
 import androidx.core.content.res.ResourcesCompat
 import com.kenning.kcutil.KCUtil
+import com.kenning.kcutil.utils.math.JIA
+import com.kenning.kcutil.utils.math.toDouble_
+import com.kenning.kcutil.utils.math.toInt_
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.ObjectInputStream
@@ -17,6 +20,8 @@ import java.io.Serializable
  *@author : KenningChen
  *Date : 2021/9/14
  */
+object FunExtention {
+}
 
 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 fun <T:Serializable>T. deepCopy(): T {

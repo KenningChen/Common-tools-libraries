@@ -2,8 +2,11 @@ package com.kenning.kcutil.utils.dialog.easydialog
 
 import android.app.Activity
 import android.content.Context
+import android.util.TypedValue
+import com.kenning.kcutil.R
 import com.kenning.kcutil.utils.math.toInt_
 import com.kenning.kcutil.utils.other.ScreenUtil
+import com.kenning.kcutil.utils.other.getDimensionResource
 
 /**
  *Description :
@@ -11,6 +14,10 @@ import com.kenning.kcutil.utils.other.ScreenUtil
  *Date : 2021/11/5
  */
 class DialogTools {
+
+    var titleTextSize = getDimensionResource(R.dimen.sp_16)
+
+    var titleTextSizeUnit = TypedValue.COMPLEX_UNIT_PX
 
     /**是否支持协程*/
     var supportSuspend = false

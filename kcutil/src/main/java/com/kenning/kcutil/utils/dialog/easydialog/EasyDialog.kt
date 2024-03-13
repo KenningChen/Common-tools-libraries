@@ -225,6 +225,17 @@ open class EasyDialog(private var context: Context) {
         return this
     }
 
+    /**
+     * 设置 标题内容文字大小
+     * @param size Float like getDimensionResource(R.dimen.sp_17)
+     * @return EasyDialog
+     */
+    fun setTitleTextSize(size:Float): EasyDialog{
+        reSetDefault()
+        tools.titleTextSize = size
+        return this
+    }
+
     fun showPicture(pic:Int): EasyDialog {
         reSetDefault()
         tools.errorTitlePic = pic

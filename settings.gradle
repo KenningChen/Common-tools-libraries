@@ -25,4 +25,4 @@ dependencyResolutionManagement {
 rootProject.name = "KCUtil"
 include ':app'
 include ':kcutil'
-include ':kcmixbill'
+//include ':kcmixbill'

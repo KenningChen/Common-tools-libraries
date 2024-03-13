@@ -56,12 +56,12 @@ object ToastUtil {
         }
     }
 
-    fun show(msg: String) {
+    fun show(msg: String, duration: Int = Toast.LENGTH_SHORT) {
 //        Toast.makeText(App.instance, msg, Toast.LENGTH_SHORT).show()
         try {
 //            if (Build.VERSION.SDK_INT >= 30) {
                 toast?.cancel()
-                toast = Toast.makeText(KCUtil.application, msg, Toast.LENGTH_SHORT)
+                toast = Toast.makeText(KCUtil.application, msg, duration)
 //            } else {
 //                if (toast == null) {
 //                    toast = Toast.makeText(KCUtil.application, msg, Toast.LENGTH_SHORT)

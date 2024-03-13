@@ -1,15 +1,9 @@
 package com.kenning.kcutil
 
-import android.app.Activity
-import android.os.Build
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.style.ForegroundColorSpan
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
-import androidx.core.content.res.ResourcesCompat
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.kenning.base.BaseActivity
 import com.kenning.kcutil.databinding.ActivityMainBinding
@@ -20,12 +14,10 @@ import com.kenning.kcutil.utils.datepicker.IPickerListener
 import com.kenning.kcutil.utils.dialog.easydialog.EasyDialog
 import com.kenning.kcutil.utils.dialog.fragmentdialog.BaseFragmentDialog
 import com.kenning.kcutil.utils.dialog.fragmentdialog.DialogFragmentButtonMode
+import com.kenning.kcutil.utils.math.toInt_
 import com.kenning.kcutil.utils.other.PermissionGroup
 import com.kenning.kcutil.utils.other.ToastUtil
 import com.kenning.kcutil.utils.other.setHook
-import com.kenning.kcutil.utils.tts.TTSUtil
-import kotlinx.android.synthetic.main.view_test_dialog.view.view1
-import kotlinx.android.synthetic.main.view_test_dialog.view.view2
 import kotlinx.coroutines.launch
 import java.util.Date
 
@@ -49,14 +41,13 @@ class MainActivity : BaseActivity(), IPickerListener {
         loadRootFragment(binding.fcvMain.id, FirstFragment())
 
         binding.fab.setOnClickListener { view ->
-            TTSUtil.getInstance()?.playText("拣货完成")
 //            lifecycleScope.launch {
 //
 //                val view_body = LayoutInflater.from(this@MainActivity).inflate(
 //                    R.layout.view_test_dialog, null
 //                )
-//                view_body.view1.setOnClickListener { ToastUtil.show("click view1") }
-//                view_body.view2.setOnClickListener { ToastUtil.show("click view2") }
+////                view_body.view1.setOnClickListener { ToastUtil.show("click view1") }
+////                view_body.view2.setOnClickListener { ToastUtil.show("click view2") }
 //
 //
 //                val result = BaseFragmentDialog(view_body)
@@ -76,15 +67,14 @@ class MainActivity : BaseActivity(), IPickerListener {
 //                }
 //            }
         }
-        binding.tagswitch.setOnSwitchSuspendListener/*({
+        binding.tagswitch.setOnSwitchSuspendListener({
             val result = EasyDialog(this@MainActivity).setContentMsg("测试")
                 .buildAsSuspend()
             true
-        }) */{
-//            ToastUtil.show("成功了")
+        }) {
+            ToastUtil.show("成功了",Toast.LENGTH_LONG)
 //
 //            TTSUtil.getInstance()?.playText("拣货货位A100-1")
-            TTSUtil.checkTTS(this)
         }
         binding.tagswitch.setHook(
             PermissionGroup.PHONE.name,

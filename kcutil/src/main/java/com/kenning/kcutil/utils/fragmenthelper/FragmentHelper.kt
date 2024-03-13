@@ -140,4 +140,12 @@ class FragmentHelper(val fragmentManager_: FragmentManager, val isSuper: Boolean
         }
         fragmentManager_.beginTransaction().remove(fragment).commit()
     }
+
+    fun FragmentHelper.closeFragment_(fragment: Fragment, bundle: Bundle?=null){
+        if (bundle!=null) {
+            fragment.setFragmentResult(fragment::class.java.simpleName, bundle)
+        }
+
+        fragmentManager_.beginTransaction().remove(fragment).commit()
+    }
 }

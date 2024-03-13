@@ -19,8 +19,15 @@ public class AESOperator {
     private String ivParameter = "4570125797502478";
     private static AESOperator instance = null;
 
+    private static int flag = Base64.NO_WRAP;
+
     private AESOperator() {
 
+    }
+
+    public static AESOperator setFlag(int flag_){
+        flag = flag_;
+        return getInstance();
     }
 
     public static AESOperator getInstance() {
@@ -43,7 +50,7 @@ public class AESOperator {
         IvParameterSpec iv = new IvParameterSpec(vector.getBytes());// 使用CBC模式，需要一个向量iv，可增加加密算法的强度
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
         byte[] encrypted = cipher.doFinal(encData.getBytes("utf-8"));
-        return Base64.encodeToString(encrypted, Base64.DEFAULT);// 此处使用BASE64做转码。
+        return Base64.encodeToString(encrypted, Base64.NO_WRAP);// 此处使用BASE64做转码。
     }
 
     // 加密
@@ -54,7 +61,7 @@ public class AESOperator {
         IvParameterSpec iv = new IvParameterSpec(ivParameter.getBytes());// 使用CBC模式，需要一个向量iv，可增加加密算法的强度
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
         byte[] encrypted = cipher.doFinal(sSrc.getBytes("utf-8"));
-        return Base64.encodeToString(encrypted, Base64.DEFAULT);// 此处使用BASE64做转码。
+        return Base64.encodeToString(encrypted, Base64.NO_WRAP);// 此处使用BASE64做转码。
     }
 
     // 解密
@@ -65,7 +72,7 @@ public class AESOperator {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             IvParameterSpec iv = new IvParameterSpec(ivParameter.getBytes());
             cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
-            byte[] encrypted1 = Base64.decode(sSrc, Base64.DEFAULT);// 先用base64解密
+            byte[] encrypted1 = Base64.decode(sSrc, Base64.NO_WRAP);// 先用base64解密
             byte[] original = cipher.doFinal(encrypted1);
             String originalString = new String(original, "utf-8");
             return originalString;
@@ -81,7 +88,7 @@ public class AESOperator {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             IvParameterSpec iv = new IvParameterSpec(ivs.getBytes());
             cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
-            byte[] encrypted1 = Base64.decode(sSrc, Base64.DEFAULT);// 先用base64解密
+            byte[] encrypted1 = Base64.decode(sSrc, Base64.NO_WRAP);// 先用base64解密
             byte[] original = cipher.doFinal(encrypted1);
             String originalString = new String(original, "utf-8");
             return originalString;

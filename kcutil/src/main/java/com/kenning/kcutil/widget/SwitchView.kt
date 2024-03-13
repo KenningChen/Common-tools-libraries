@@ -214,4 +214,12 @@ class SwitchView @JvmOverloads constructor(
             }
         }
     }
+
+    fun setOffDrawable(mNormalDrawable: Drawable?) {
+        mSwitchView.setOffDrawable(mNormalDrawable)
+    }
+
+    fun setOnDrawable(mNormalDrawable: Drawable?) {
+        mSwitchView.setOnDrawable(mNormalDrawable)
+    }
 }
