@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kenning.kcutil.widget.basicview.BackGroundLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:normalBackgroundColor="@color/transparent"
+    app:bgradius="10dp">
+
+    <com.kenning.kcutil.widget.basicview.BackGroundLinearLayout
+        android:id="@+id/layouttitle"
+        app:normalBackgroundColor="@color/color_00ABF3"
+        app:top_left_radius="10dp"
+        app:top_right_radius="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/picture"
+            android:layout_marginTop="20dp"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center"/>
+
+        <com.kenning.kcutil.widget.basicview.BackGroundTextView
+            android:id="@+id/tvDialogName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="50dp"
+            android:text="标题"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:normalBackgroundColor="@color/color_00ABF3"
+            app:top_left_radius="10dp"
+            app:top_right_radius="10dp" />
+    </com.kenning.kcutil.widget.basicview.BackGroundLinearLayout>
+
+    <com.kenning.kcutil.widget.basicview.BackGroundTextView
+        android:visibility="gone"
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        app:top_left_radius="10dp"
+        app:top_right_radius="10dp"
+        app:normalBackgroundColor="@color/white"/>
+
+    <View
+        android:id="@+id/titleline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_EAEEEF"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mRecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_EAEEEF"
+        app:layout_constraintTop_toBottomOf="@+id/mRecyclerview" />
+
+    <com.kenning.kcutil.widget.basicview.BackGroundTextView
+        android:visibility="gone"
+        android:id="@+id/bottomview"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        app:bottom_left_radius="10dp"
+        app:bottom_right_radius="10dp"
+        app:normalBackgroundColor="@color/white"/>
+
+    <LinearLayout
+        android:id="@+id/layoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+</com.kenning.kcutil.widget.basicview.BackGroundLinearLayout>

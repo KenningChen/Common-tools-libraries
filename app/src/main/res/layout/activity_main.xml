@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:id="@+id/fcvMain"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+    <TextView
+        android:id="@+id/tag11"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        />
+
+    <FrameLayout
+        android:layout_marginTop="40dp"
+        android:id="@+id/fcvMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/tag11"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="16dp"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+    <com.kenning.kcutil.widget.SwitchView
+        android:background="@color/color_00ABF3"
+        android:id="@+id/tagswitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:kc_imageHeight="10dp"
+        app:kc_imageWidth="20dp"
+        app:kc_checkOffBackground="@drawable/ic_switch_off"
+        app:kc_checkOnBackground="@drawable/ic_switch_on"
+        app:kc_checkstate="false"
+        app:kc_textsize="10sp"
+        app:kc_text="切换状态"
+        app:kc_autoSrcChange="false"
+        app:kc_textColor="@color/colorAccent"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

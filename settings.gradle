@@ -1,0 +1,28 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+//        flatDir {
+//            dirs 'libs'
+//        }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'https://jitpack.io' }
+//        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+//        flatDir {
+//            dirs 'libs'
+//        }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'https://jitpack.io' }
+//        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+}
+rootProject.name = "KCUtil"
+include ':app'
+include ':kcutil'
+include ':kcmixbill'

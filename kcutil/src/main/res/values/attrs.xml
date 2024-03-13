@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--   自定义日期控件相关属性 -->
+    <declare-styleable name="customdate">
+        <attr name="rb_title" format="string" />
+        <attr name="rb_text1" format="string" />
+        <attr name="rb_text2" format="string" />
+        <attr name="rb_text3" format="string" />
+        <attr name="rb_text4" format="string" />
+        <attr name="rbfilter_hide" format="boolean" />
+        <attr name="rb_tag1">
+            <enum name="TODAY" value="1" />
+            <enum name="YESTERDAY" value="0" />
+            <enum name="WEEK" value="2" />
+            <enum name="THIRTY_DAYS" value="5" />
+            <enum name="MONTH" value="4" />
+            <enum name="THREEMONTH" value="6" />
+            <enum name="HALFYEAR" value="7" />
+            <enum name="YEAR" value="3" />
+            <enum name="Next7Days" value="10" />
+            <enum name="Next30Days" value="11" />
+        </attr>
+        <attr name="rb_tag2">
+            <enum name="TODAY" value="1" />
+            <enum name="YESTERDAY" value="0" />
+            <enum name="WEEK" value="2" />
+            <enum name="THIRTY_DAYS" value="5" />
+            <enum name="MONTH" value="4" />
+            <enum name="THREEMONTH" value="6" />
+            <enum name="HALFYEAR" value="7" />
+            <enum name="YEAR" value="3" />
+            <enum name="Next7Days" value="10" />
+            <enum name="Next30Days" value="11" />
+        </attr>
+        <attr name="rb_tag3">
+            <enum name="TODAY" value="1" />
+            <enum name="YESTERDAY" value="0" />
+            <enum name="WEEK" value="2" />
+            <enum name="THIRTY_DAYS" value="5" />
+            <enum name="MONTH" value="4" />
+            <enum name="THREEMONTH" value="6" />
+            <enum name="HALFYEAR" value="7" />
+            <enum name="YEAR" value="3" />
+            <enum name="Next7Days" value="10" />
+            <enum name="Next30Days" value="11" />
+        </attr>
+        <attr name="rb_tag4">
+            <enum name="TODAY" value="1" />
+            <enum name="YESTERDAY" value="0" />
+            <enum name="WEEK" value="2" />
+            <enum name="THIRTY_DAYS" value="5" />
+            <enum name="MONTH" value="4" />
+            <enum name="THREEMONTH" value="6" />
+            <enum name="HALFYEAR" value="7" />
+            <enum name="YEAR" value="3" />
+            <enum name="Next7Days" value="10" />
+            <enum name="Next30Days" value="11" />
+        </attr>
+    </declare-styleable>
+
+    <!--   自定义控件 -->
+    <declare-styleable name="StateCustomView">
+
+        <!--text color-->
+        <attr name="normalTextColor" format="color|reference" />
+        <attr name="pressedTextColor" format="color|reference" />
+        <attr name="unableTextColor" format="color|reference" />
+
+        <!--stroke width and color, dash width, dash gap-->
+        <attr name="strokeDashWidth" format="dimension|reference" />
+        <attr name="strokeDashGap" format="dimension|reference" />
+        <attr name="normalStrokeWidth" format="dimension|reference" />
+        <attr name="pressedStrokeWidth" format="dimension|reference" />
+        <attr name="unableStrokeWidth" format="dimension|reference" />
+        <attr name="normalStrokeColor" format="color|reference" />
+        <attr name="pressedStrokeColor" format="color|reference" />
+        <attr name="unableStrokeColor" format="color|reference" />
+
+        <!--background color-->
+        <attr name="normalBackgroundColor" format="color|reference" />
+        <attr name="normalBackgroundColor_end" format="color|reference" />
+        <attr name="pressedBackgroundColor" format="color|reference" />
+        <attr name="unableBackgroundColor" format="color|reference" />
+
+        <!--background radius-->
+        <attr name="bgradius" format="dimension|reference" />
+        <attr name="top_right_radius" format="dimension|reference" />
+        <attr name="bottom_right_radius" format="dimension|reference" />
+        <attr name="bottom_left_radius" format="dimension|reference" />
+        <attr name="top_left_radius" format="dimension|reference" />
+        <attr name="rounds" format="boolean|reference" />
+
+        <attr name="leftrounds" format="boolean|reference" />
+        <attr name="rightrounds" format="boolean|reference" />
+
+        <!--animation duration-->
+        <attr name="animationDuration" format="integer|reference" />
+
+        <attr name="gradientstate">
+            <enum name="Top_Bottom" value="0" />
+            <enum name="Left_Right" value="6" />
+        </attr>
+    </declare-styleable>
+
+    <!--   自定义checkbox -->
+    <declare-styleable name="SwitchImageView">
+        <attr name="checkOffBackground" format="color|reference" />
+        <attr name="checkOnBackground" format="color|reference" />
+        <attr name="checkstate" format="boolean" />
+        <attr name="autoSrcChange" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="SwitchView">
+        <attr name="kc_checkOffBackground" format="color|reference" />
+        <attr name="kc_checkOnBackground" format="color|reference" />
+        <attr name="kc_checkstate" format="boolean" />
+        <attr name="kc_imageWidth" format="dimension|reference" />
+        <attr name="kc_imageHeight" format="dimension|reference" />
+        <attr name="kc_imagepadding" format="dimension|reference" />
+        <attr name="kc_imagepaddingleft" format="dimension|reference" />
+        <attr name="kc_imagepaddingright" format="dimension|reference" />
+        <attr name="kc_imagepaddingtop" format="dimension|reference" />
+        <attr name="kc_imagepaddingbottom" format="dimension|reference" />
+        <attr name="kc_textsize" format="dimension|reference" />
+        <attr name="kc_text" format="string" />
+        <attr name="kc_textColor" format="color|reference" />
+        <attr name="kc_textPaddingRight" format="dimension|reference" />
+        <attr name="kc_autoSrcChange" format="boolean" />
+        <!--暂不支持-->
+        <attr name="kc_textViewLocation" format="boolean" />
+    </declare-styleable>
+</resources>

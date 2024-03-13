@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kenning.kcutil.widget.basicview.BackGroundTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/button"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:minHeight="50dp"
+    android:text=""
+    android:textColor="@color/color_00ABF3"
+    android:textSize="14sp" />

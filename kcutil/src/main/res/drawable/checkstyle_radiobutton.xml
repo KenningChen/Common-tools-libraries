@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--RadioButton选中  -->
+    <item android:color="@color/white"
+        android:drawable="@drawable/background_radiobutton_blue_corner"
+        android:state_checked="true" />
+    <item android:color="@color/white"
+        android:drawable="@drawable/background_radiobutton_blue_corner"
+        android:state_selected="true" />
+
+    <item android:color="@color/white"
+        android:drawable="@drawable/background_radiobutton_blue_corner"
+        android:state_pressed="true" />
+    <item android:color="#808080"
+        android:drawable="@drawable/background_radiobutton_normal_corner"
+        android:state_checked="false" />
+
+</selector>

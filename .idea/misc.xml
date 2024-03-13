@@ -1,0 +1,41 @@
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Kenning/KCUtil/app/src/main/res/layout/act_demo.xml" value="0.38333333333333336" />
+        <entry key="..\:/Kenning/KCUtil/app/src/main/res/layout/activity_main.xml" value="0.38333333333333336" />
+        <entry key="..\:/Kenning/KCUtil/app/src/main/res/layout/content_main.xml" value="0.38333333333333336" />
+        <entry key="..\:/Kenning/KCUtil/app/src/main/res/layout/fragment_first.xml" value="0.38333333333333336" />
+        <entry key="..\:/Kenning/KCUtil/app/src/main/res/layout/fragment_second.xml" value="0.38333333333333336" />
+        <entry key="..\:/Kenning/KCUtil/app/src/main/res/menu/menu_main.xml" value="0.38333333333333336" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/drawable/background_radiobutton_normal_corner.xml" value="0.2515" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/drawable/checkstyle_radiobutton.xml" value="0.2515" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/drawable/ic_easydialog_checked.xml" value="0.2515" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/drawable/ic_easydialog_unchecked.xml" value="0.2515" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/layout/dialog_aboutlist.xml" value="0.38333333333333336" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/layout/diaog_msg.xml" value="0.38333333333333336" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/layout/diaog_msg_withprompt.xml" value="0.38333333333333336" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/layout/diaog_strlist.xml" value="0.2328125" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/layout/easydialog.xml" value="0.38333333333333336" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/layout/fragment_first.xml" value="0.2328125" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/layout/item_button.xml" value="0.38333333333333336" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/layout/view_datepicker.xml" value="0.38333333333333336" />
+        <entry key="..\:/Kenning/KCUtil/kcutil/src/main/res/layout/view_datepicker_bottom.xml" value="0.38333333333333336" />
+        <entry key="..\:/workspace/KCUtil/app/src/main/res/layout/activity_main.xml" value="0.3567708333333333" />
+        <entry key="..\:/workspace/KCUtil/app/src/main/res/layout/content_main.xml" value="0.3567708333333333" />
+        <entry key="..\:/workspace/KCUtil/app/src/main/res/layout/fragment_first.xml" value="0.3567708333333333" />
+        <entry key="..\:/workspace/KCUtil/kcutil/src/main/res/layout/activity_main.xml" value="0.3567708333333333" />
+        <entry key="..\:/workspace/KCUtil/kcutil/src/main/res/layout/content_main.xml" value="0.3567708333333333" />
+        <entry key="..\:/workspace/KCUtil/kcutil/src/main/res/layout/fragment_first.xml" value="0.3567708333333333" />
+        <entry key="..\:/workspace/KCUtil/kcutil/src/main/res/layout/view_datepicker_bottom.xml" value="0.5" />
+        <entry key="..\:/workspace/KCUtil/kcutil/src/main/res/menu/menu_main.xml" value="0.2515625" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

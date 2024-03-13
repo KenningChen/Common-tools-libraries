@@ -1,0 +1,55 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 对话框 -->
+    <style name="commom_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!--边框-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--半透明-->
+        <item name="android:windowNoTitle">true</item>
+        <!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--模糊-->
+    </style>
+
+    <!--  自定义viewgroup 横向一次放入控件 位置不够后 换行填入  -->
+    <declare-styleable name="AutoNewLineLayout">
+        <attr name="horizontalSpace" format="dimension|reference" />
+
+        <attr name="vertivalSpace" format="dimension|reference" />
+    </declare-styleable>
+
+    <style name="KCBottomSheet">
+        <item name="android:windowBackground">@color/viewfinder_mask</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <!-- Note that we use the base animation style here (that is no
+             animations) because we really have no idea how this kind of
+             activity will be used. -->
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+
+    <style name="TitleBarHorizontalStyle_">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_40</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/color_00ABF3</item>
+    </style>
+    <!-- 白色按钮图标的图标样式  ，含字体大小、颜色、位置、宽、高 -->
+    <style name="TitleBarBtnBackStyle_">
+        <!--        <item name="android:background">@drawable/btn_anim</item>-->
+        <item name="android:textSize">@dimen/sp_15</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:onClick">closeActivity</item>
+        <item name="android:drawableLeft">@null</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
