@@ -19,14 +19,14 @@
         app:top_left_radius="5dp"
         app:top_right_radius="5dp" />
 
-    <LinearLayout
+    <com.kenning.kcutil.widget.basicview.BackGroundLinearLayout
         android:id="@+id/layoutBody"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"/>
 
-    <LinearLayout
+    <com.kenning.kcutil.widget.basicview.BackGroundLinearLayout
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,5 +41,5 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal"/>
-    </LinearLayout>
+    </com.kenning.kcutil.widget.basicview.BackGroundLinearLayout>
 </com.kenning.kcutil.widget.basicview.BackGroundLinearLayout>
