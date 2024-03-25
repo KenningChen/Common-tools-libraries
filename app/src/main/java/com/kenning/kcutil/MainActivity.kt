@@ -3,6 +3,7 @@ package com.kenning.kcutil
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.kenning.base.BaseActivity
@@ -29,7 +30,9 @@ class MainActivity : BaseActivity(), IPickerListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val view_body = /*LayoutInflater.from(this@MainActivity).inflate(
+            com.kenning.kcutil.R.layout.view_test_dialog, null
+        )*/TextView(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val da = DateExtendUtil.getBalanceDateByDay(
@@ -37,25 +40,22 @@ class MainActivity : BaseActivity(), IPickerListener {
             Date_Format.YMD,
             5
         )
-        Log.e("kenning", da)
 //        supportFragmentManager.beginTransaction().add(R.id.fcvMain, FirstFragment(),"first").commit()
         loadRootFragment(binding.fcvMain.id, FirstFragment())
 
         binding.fab.setOnClickListener { view ->
             lifecycleScope.launch {
-                val view_body = LayoutInflater.from(this@MainActivity).inflate(
-                    com.kenning.kcutil.R.layout.view_test_dialog, null
-                )
+
                 val dialog = BaseFragmentDialog(view_body)
                     .setTitle("测试")
-                    .hideBottom(true)
                     .hideTitle(true)
-                    .needBodyPadding(true)
+                    .cancelAble(true)
+                    .keyCancelAble(true)
                     .setButtonMode(
                         DialogFragmentButtonMode("hh"),
                         DialogFragmentButtonMode("YY")
                     )
-
+                view_body.append("分段加载！")
                 val result = dialog
                     .showAsSuspend(
                         supportFragmentManager,
@@ -80,7 +80,7 @@ class MainActivity : BaseActivity(), IPickerListener {
                 .buildAsSuspend()
             true
         }) {
-            ToastUtil.show("成功了",Toast.LENGTH_LONG)
+            ToastUtil.show("成功了",15000)
 //
 //            TTSUtil.getInstance()?.playText("拣货货位A100-1")
         }

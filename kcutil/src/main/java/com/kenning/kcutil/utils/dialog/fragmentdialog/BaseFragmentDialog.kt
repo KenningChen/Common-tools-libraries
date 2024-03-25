@@ -36,12 +36,12 @@ import kotlin.coroutines.suspendCoroutine
  */
 class BaseFragmentDialog(
     private val bodyView: View,
-    @IntRange(from = 75,to= 90) val widthPer:Int = 80,
-    @IntRange(from = 60,to= 100) val heightPer:Int? = null
-): DialogFragment(R.layout.dialogfragment_base) {
+    @IntRange(from = 75, to = 90) val widthPer: Int = 80,
+    @IntRange(from = 60, to = 100) val heightPer: Int? = null
+) : DialogFragment(R.layout.dialogfragment_base) {
 
     private var title: String? = "提示"
-    
+
     /**设置底部操作按钮的排列方式
      *
      * 0 横向
@@ -49,16 +49,16 @@ class BaseFragmentDialog(
      * 1 纵向
      * */
     private var bottomButtonOption = 0
-    
+
     /**
      * 控件各个边角的圆半径
      */
-    fun radius():Int = ScreenUtil.dip2px(5f)
+    fun radius(): Int = ScreenUtil.dip2px(5f)
 
     /**
      * 底部按钮高度
      */
-    fun buttonHeight():Int = ScreenUtil.dip2px(40f)
+    fun buttonHeight(): Int = ScreenUtil.dip2px(40f)
 
     // 隐藏底部控件
     private var hideBottom = false
@@ -70,7 +70,7 @@ class BaseFragmentDialog(
     private var modes: Array<out DialogFragmentButtonMode>? = null
 
     private val mSubscribe = BaseDialog.Subscribe<Any?>()
-    private var mResult:Any? = null
+    private var mResult: Any? = null
 
     private var bodyPadding = false
 
@@ -78,32 +78,32 @@ class BaseFragmentDialog(
 
     private var keyCancel = false
 
-    fun cancelAble(cancel: Boolean = false): BaseFragmentDialog{
+    fun cancelAble(cancel: Boolean = false): BaseFragmentDialog {
         cancelable = cancel
         return this
     }
 
-    fun keyCancelAble(cancel: Boolean = false): BaseFragmentDialog{
+    fun keyCancelAble(cancel: Boolean = false): BaseFragmentDialog {
         keyCancel = cancel
         return this
     }
 
-    fun hideTitle(hide: Boolean = false): BaseFragmentDialog{
+    fun hideTitle(hide: Boolean = false): BaseFragmentDialog {
         this.hideTitle = hide
         return this
     }
 
-    fun hideBottom(hide: Boolean = false): BaseFragmentDialog{
+    fun hideBottom(hide: Boolean = false): BaseFragmentDialog {
         this.hideBottom = hide
         return this
     }
 
-    fun needBodyPadding(need: Boolean = false): BaseFragmentDialog{
+    fun needBodyPadding(need: Boolean = false): BaseFragmentDialog {
         bodyPadding = need
         return this
     }
 
-    fun setTitle(title:String): BaseFragmentDialog{
+    fun setTitle(title: String): BaseFragmentDialog {
         this.title = title
         return this
     }
@@ -234,12 +234,19 @@ class BaseFragmentDialog(
         savedInstanceState: Bundle?
     ): View? {
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        isCancelable = keyCancel
         dialog?.window?.apply {
             decorView.setBackgroundColor(Color.TRANSPARENT)
         }
 
         getDialog()?.setCanceledOnTouchOutside(cancelable);
+
+        dialog?.setOnCancelListener {
+            // 在这里处理对话框���部区域的点击事件逻辑
+            // 例如，关闭对话框或执行其他操作
+            if (cancelable) {
+                dismiss()
+            }
+        }
 
         return super.onCreateView(inflater, container, savedInstanceState)
     }
@@ -251,6 +258,9 @@ class BaseFragmentDialog(
         dialog!!.setOnKeyListener { dialog, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_BACK) {
                 // 处理物理返回键事件
+                if (keyCancel) {
+                    dismiss()
+                }
                 !keyCancel // 返回 true 表示消费掉按键事件，不关闭对话框
             } else false
         }
@@ -263,14 +273,13 @@ class BaseFragmentDialog(
     }
 
     private fun bindEvent() {
-
     }
 
     private fun initView() {
         val params = main.layoutParams
-        params.width = (ScreenUtil.getScreenWidth()*widthPer*0.01).toInt_()
+        params.width = (ScreenUtil.getScreenWidth() * widthPer * 0.01).toInt_()
         heightPer?.apply {
-            params.height = (ScreenUtil.getScreenWidth()*this*0.01).toInt_()
+            params.height = (ScreenUtil.getScreenWidth() * this * 0.01).toInt_()
         }
 
         main.layoutParams = params
@@ -278,19 +287,19 @@ class BaseFragmentDialog(
         main.setEachCornerRadius(radius(), radius(), radius(), radius())
         tvTitle.setEachCornerRadius(radius(), radius(), 0, 0)
         tvTitle.text = title
-        if (hideTitle){
+        if (hideTitle) {
             tvTitle.visibility = View.GONE
         }
         if (bodyPadding)
-        layoutBody.setPadding(radius(), radius(), radius(), radius())
+            layoutBody.setPadding(radius(), radius(), radius(), radius())
 
         Handler(Looper.getMainLooper()).post {
-            layoutBody.removeAllViews()
+
             layoutBody.addView(bodyView)
-            if (hideBottom){
+            if (hideBottom) {
                 layoutBottom.visibility = View.GONE
                 layoutBody.setEachCornerRadius(
-                    0,0,
+                    0, 0,
                     radius(), radius()
                 )
                 return@post
@@ -307,6 +316,7 @@ class BaseFragmentDialog(
     }
 
     override fun dismiss() {
+        layoutBody.removeAllViews()
         super.dismiss()
         mSubscribe.post(mResult)
     }
