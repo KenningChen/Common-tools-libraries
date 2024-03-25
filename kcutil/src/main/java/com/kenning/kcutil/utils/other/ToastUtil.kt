@@ -77,6 +77,27 @@ object ToastUtil {
         }
     }
 
+    fun show(msg: String) {
+//        Toast.makeText(App.instance, msg, Toast.LENGTH_SHORT).show()
+        try {
+//            if (Build.VERSION.SDK_INT >= 30) {
+            toast?.cancel()
+            toast = Toast.makeText(KCUtil.application, msg, Toast.LENGTH_SHORT)
+//            } else {
+//                if (toast == null) {
+//                    toast = Toast.makeText(KCUtil.application, msg, Toast.LENGTH_SHORT)
+//                } else {
+//                    toast!!.setText(msg)
+//                    toast!!.duration = Toast.LENGTH_SHORT
+//                }
+//                hook(toast!!)
+//            }
+            toast?.show()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     fun cancelToast() {
         toast?.cancel()
     }
