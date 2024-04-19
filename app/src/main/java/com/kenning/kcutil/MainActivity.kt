@@ -16,6 +16,7 @@ import com.kenning.kcutil.utils.datepicker.IPickerListener
 import com.kenning.kcutil.utils.dialog.easydialog.EasyDialog
 import com.kenning.kcutil.utils.dialog.fragmentdialog.BaseFragmentDialog
 import com.kenning.kcutil.utils.dialog.fragmentdialog.DialogFragmentButtonMode
+import com.kenning.kcutil.utils.math.NumBox
 import com.kenning.kcutil.utils.other.PermissionGroup
 import com.kenning.kcutil.utils.other.ToastUtil
 import com.kenning.kcutil.utils.other.setHook
@@ -44,35 +45,44 @@ class MainActivity : BaseActivity(), IPickerListener {
         loadRootFragment(binding.fcvMain.id, FirstFragment())
 
         binding.fab.setOnClickListener { view ->
-            lifecycleScope.launch {
-
-                val dialog = BaseFragmentDialog(view_body)
-                    .setTitle("测试")
-                    .hideTitle(true)
-                    .cancelAble(true)
-                    .keyCancelAble(true)
-                    .setButtonMode(
-                        DialogFragmentButtonMode("hh"),
-                        DialogFragmentButtonMode("YY")
-                    )
-                view_body.append("分段加载！")
-                val result = dialog
-                    .showAsSuspend(
-                        supportFragmentManager,
-                        BaseFragmentDialog::class.java.simpleName
-                    )
-                if (result.toString() == "YY"){
-                    ToastUtil.show("click yy")
-                }else{
-                    ToastUtil.show("click other")
-                }
-
-//                view_body.view1.setOnClickListener {
-//                    dialog.dismiss()
-//                    ToastUtil.show("click view1") }
-//                view_body.view2.setOnClickListener {
-//                    dialog.dismiss()
-//                    ToastUtil.show("click view2") }
+//            lifecycleScope.launch {
+//
+//                val dialog = BaseFragmentDialog(view_body)
+//                    .setTitle("测试")
+//                    .hideTitle(true)
+//                    .cancelAble(true)
+//                    .keyCancelAble(true)
+//                    .setButtonMode(
+//                        DialogFragmentButtonMode("hh"),
+//                        DialogFragmentButtonMode("YY")
+//                    )
+//                view_body.append("分段加载！")
+//                val result = dialog
+//                    .showAsSuspend(
+//                        supportFragmentManager,
+//                        BaseFragmentDialog::class.java.simpleName
+//                    )
+//                if (result.toString() == "YY"){
+//                    ToastUtil.show("click yy")
+//                }else{
+//                    ToastUtil.show("click other")
+//                }
+//
+////                view_body.view1.setOnClickListener {
+////                    dialog.dismiss()
+////                    ToastUtil.show("click view1") }
+////                view_body.view2.setOnClickListener {
+////                    dialog.dismiss()
+////                    ToastUtil.show("click view2") }
+//            }
+            var a = NumBox("3.000000000000001")
+            var b = NumBox(3)
+            if (a > b){
+                ToastUtil.show(" ${a.get()} > ${b.get()}")
+            }else if (a == b){
+                ToastUtil.show(" ${a.get()} = ${b.get()}")
+            }else{
+                ToastUtil.show(" ${a.get()} < ${b.get()}")
             }
         }
         binding.tagswitch.setOnSwitchSuspendListener({
@@ -89,6 +99,8 @@ class MainActivity : BaseActivity(), IPickerListener {
             "没有电话权限,无法执行该功能,请先去设置权限"
         )
     }
+
+    class a()
 
     override fun closeAct() {
         TODO("Not yet implemented")
