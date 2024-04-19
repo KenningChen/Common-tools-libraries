@@ -75,10 +75,10 @@ class MainActivity : BaseActivity(), IPickerListener {
 ////                    dialog.dismiss()
 ////                    ToastUtil.show("click view2") }
 //            }
-            var a = NumBox("3.000000000000001")
+            var a = NumBox("3")
             var b = NumBox(3)
-            if (a > b){
-                ToastUtil.show(" ${a.get()} > ${b.get()}")
+            if (a >= b){
+                ToastUtil.show(" ${a.get()} >= ${b.get()}")
             }else if (a == b){
                 ToastUtil.show(" ${a.get()} = ${b.get()}")
             }else{

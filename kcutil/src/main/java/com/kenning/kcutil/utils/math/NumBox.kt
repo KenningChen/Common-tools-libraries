@@ -39,14 +39,18 @@ class NumBox(private val content: Any) : Comparable<NumBox> {
     override fun compareTo(other: NumBox): Int {
 
         if (this.get() is String && other.get() is Number && this.get().isNumeric()){
-            return if(this.get().JIAN(other.get()).toDouble_()>0) 1 else -1
+            val dif = this.get().JIAN(other.get()).toDouble_()
+            return if(dif>0) 1 else if (dif == 0.0) 0 else -1
         }else if (this.get() is Number && other.get() is String && other.get().isNumeric()){
-            return if(this.get().JIAN(other.get()).toDouble_()>0) 1 else -1
+            val dif = this.get().JIAN(other.get()).toDouble_()
+            return if(dif>0) 1 else if (dif == 0.0) 0 else -1
         }else if (this.get() is Number && other.get() is Number){
-            return if(this.get().JIAN(other.get()).toDouble_()>0) 1 else -1
+            val dif = this.get().JIAN(other.get()).toDouble_()
+            return if(dif>0) 1 else if (dif == 0.0) 0 else -1
         }else if (this.get() is String && other.get() is String &&
             this.get().isNumeric() && other.get().isNumeric()){
-            return if(this.get().JIAN(other.get()).toDouble_()>0) 1 else -1
+            val dif = this.get().JIAN(other.get()).toDouble_()
+            return if(dif>0) 1 else if (dif == 0.0) 0 else -1
         } else {
             return throw UnsupportedOperationException("Cannot compare values of types ${this.get
                 ().javaClass.simpleName} and ${other.get().javaClass.simpleName} or string is " +
