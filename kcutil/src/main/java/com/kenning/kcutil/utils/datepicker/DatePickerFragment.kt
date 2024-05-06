@@ -15,6 +15,9 @@ import com.kenning.kcutil.KCUtil
 import com.kenning.kcutil.R
 import com.kenning.kcutil.databinding.ViewDatepickerBinding
 import com.kenning.kcutil.utils.date.DateExtendUtil
+import com.kenning.kcutil.utils.date.Date_Format
+import com.kenning.kcutil.utils.date.parseBy
+import com.kenning.kcutil.utils.other.ToastUtil
 
 /**
  * Description :
@@ -49,8 +52,8 @@ class DatePickerFragment : Fragment(),IDatePickerBase {
     private val zr = DateExtendUtil.getYestodayDateStr()
     private val week = DateExtendUtil.getNear7DaysDAteStr()
 //
-//    /**显示位置*/
-//    var Location = PickerControl.ShowLocation.BOTTOM
+    /**显示位置*/
+    var Location = PickerControl.ShowLocation.TOP
 
     var code = -1
 
@@ -58,6 +61,15 @@ class DatePickerFragment : Fragment(),IDatePickerBase {
 
     //日期标题
     var title = ""
+
+    // 日期格式是否包含-
+    var isFormat_ = true
+
+    var type = ""
+
+    var formatstr = ""
+    // 是否需要日/月切换按钮
+    var mNonChange = true
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -82,8 +94,9 @@ class DatePickerFragment : Fragment(),IDatePickerBase {
         savedInstanceState: Bundle?
     ): View? {
         bundle = requireArguments()
-//        Location = PickerControl.ShowLocation.valueOf(bundle.getString("location", "BOTTOM"))
+        Location = PickerControl.ShowLocation.valueOf(bundle.getString("location", "TOP"))
 //        alpha = bundle.getFloat("alpha", 0.5f)
+        mNonChange = bundle.getBoolean("nonchange", true)
             title = bundle.getString("title","开始日期")
 //        if (Location == PickerControl.ShowLocation.BOTTOM) {
 //            mView = ViewDatepickerBottomBinding.inflate(layoutInflater).root
@@ -96,25 +109,112 @@ class DatePickerFragment : Fragment(),IDatePickerBase {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        mView.findViewById<View>(R.id.backgroundWall).alpha = alpha
-        getBeforeData()
-        initview()
-        control = PickerControl(this)
-        control.setCurrentDate()
-        bindClick()
+        if(getBeforeData()) {
+            initview()
+            control = PickerControl(this)
+            control.setCurrentDate()
+            bindClick()
 
-        if (code == -1) {
+            if (code == -1) {
 //            ToastUtil.showToast("缺少参数 RequestCode")
+                requireActivity().supportFragmentManager.popBackStack()
+            }
+        }else{
             requireActivity().supportFragmentManager.popBackStack()
         }
     }
 
-    fun getBeforeData() {
+    fun getBeforeData(): Boolean {
 
         isSingleDate = bundle.getBoolean("isSingleDate", false)
         startdate = bundle.getString("start", "")
         enddate = bundle.getString("end", "")
         code = bundle.getInt("code", -1)
 
+        //判断日期格式
+        if (!startdate.contains("-")) {
+            isFormat_ = false
+            val year = startdate.substring(0, 4)
+            val month = startdate.substring(4, 6)
+            val day =
+                if (startdate.length > 6)
+                    startdate.substring(6, startdate.length)
+                else ""
+            if (day.isEmpty()) {
+                type = "MM"
+                formatstr = "yyyyMM"
+                startdate = "${year}-${month}-01"
+            } else {
+                type = "DD"
+                formatstr = "yyyyMMdd"
+                startdate = "${year}-${month}-$day"
+            }
+        } else {
+            kotlin.runCatching {
+                startdate parseBy Date_Format.YMD
+            }.onSuccess {
+                //传入的日期格式为yyyy-MM-dd
+                type = "DD"
+                formatstr = "yyyy-MM-dd"
+            }.onFailure {
+                //传入的日期格式为yyyy-MM
+                type = "MM"
+                startdate = "${startdate}-01"
+                formatstr = "yyyy-MM"
+            }
+        }
+        if (mNonChange) {
+            type = "DD"
+            formatstr = "yyyy-MM-dd"
+        }
+
+        if(!isSingleDate){
+            var type = ""
+            var isFormat_ = true
+            var formatstr = ""
+            //判断日期格式
+            if (!enddate.contains("-")) {
+                isFormat_ = false
+                val year = enddate.substring(0, 4)
+                val month = enddate.substring(4, 6)
+                val day =
+                    if (enddate.length > 6)
+                        enddate.substring(6, enddate.length)
+                    else ""
+                if (day.isEmpty()) {
+                    type = "MM"
+                    formatstr = "yyyyMM"
+                    enddate = "${year}-${month}-01"
+                } else {
+                    type = "DD"
+                    formatstr = "yyyyMMdd"
+                    enddate = "${year}-${month}-$day"
+                }
+            } else {
+                kotlin.runCatching {
+                    enddate parseBy Date_Format.YMD
+                }.onSuccess {
+                    //传入的日期格式为yyyy-MM-dd
+                    type = "DD"
+                    formatstr = "yyyy-MM-dd"
+                }.onFailure {
+                    //传入的日期格式为yyyy-MM
+                    type = "MM"
+                    enddate = "${enddate}-01"
+                    formatstr = "yyyy-MM"
+                }
+            }
+            if (mNonChange) {
+                type = "DD"
+                formatstr = "yyyy-MM-dd"
+            }
+
+            if (!(this.type == type && this.formatstr == formatstr && this.isFormat_ == isFormat_)){
+                ToastUtil.show("开始日期和结束日期的日期格式不一致")
+                return false
+            }
+        }
+        return true
     }
 
     fun initview() {
@@ -124,11 +224,12 @@ class DatePickerFragment : Fragment(),IDatePickerBase {
             mView.findViewById<View>(R.id.layoutstart).visibility = View.GONE
             mView.findViewById<View>(R.id.endview).visibility = View.GONE
             mView.findViewById<View>(R.id.layoutend).visibility = View.GONE
+            mView.findViewById<TextView>(R.id.starttitle).text = title
         } else {
             mView.findViewById<View>(R.id.layoutDateCheck).visibility = View.GONE
             mView.findViewById<View>(R.id.layoutOnly).visibility = View.GONE
+            mView.findViewById<TextView>(R.id.starttitle).text = "日期选择"
         }
-        mView.findViewById<TextView>(R.id.starttitle).text = title
 
 
         mView.findViewById<TextView>(R.id.startdate).text = startdate
@@ -149,6 +250,12 @@ class DatePickerFragment : Fragment(),IDatePickerBase {
 //        } else {
 //            mBinding.rgPicker.check(R.id.rbOther)
 //        }
+
+        if (mNonChange) {
+            mView.findViewById<View>(R.id.switchType).visibility = View.GONE
+        }else{
+            mView.findViewById<View>(R.id.layoutDateCheck).visibility = View.VISIBLE
+        }
     }
 
     fun bindClick() {

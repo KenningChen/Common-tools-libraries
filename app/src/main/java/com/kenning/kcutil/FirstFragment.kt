@@ -1,5 +1,6 @@
 package com.kenning.kcutil
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import com.kenning.kcutil.utils.datepicker.IPickerListener
 import com.kenning.kcutil.utils.datepicker.PickerControl
 import com.kenning.kcutil.utils.math.CHENG
 import com.kenning.kcutil.utils.math.keepPoint
+import com.kenning.kcutil.utils.other.ToastUtil
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -40,18 +42,15 @@ class FirstFragment : BaseBusinessFragment(), IPickerListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonFirst.setOnClickListener {
-//            DatePickerBuilder(this).setBeginDate("2023-02-28")
-//                .setEndDate("2024-02-29")
-//                .setSingle(true)
-//                .setRequestCode(111)
-//                .setLoaction(PickerControl.ShowLocation.BOTTOM)
-//                .start(R.id.fcvMain)
-            val a = 11111.23333
-            val b = 2.4
-            Log.e("kenning",a.CHENG(b).CHENG("2,7").keepPoint(3))
+//
+        binding.scanView.setRightImageClickEvent {
+            ToastUtil.show("哦吼")
+        }.setOnScanCallback {
+            binding.tvResult.text = it
+        }.setOnClickListener {
+            ToastUtil.show("hahfdah")
         }
+//        binding.scanView.requestFocus()
     }
 
     override fun onDestroyView() {
@@ -64,7 +63,7 @@ class FirstFragment : BaseBusinessFragment(), IPickerListener {
     }
 
     override fun onDateChange(requestcode: Int, start: String, end: String):Boolean {
-        binding.textviewFirst.text = "$start - $end"
+//        binding.textviewFirst.text = "$start - $end"
         return true
     }
 }

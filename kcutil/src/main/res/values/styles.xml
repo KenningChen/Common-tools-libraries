@@ -52,4 +52,11 @@
         <item name="android:clickable">true</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <!--设置主题的自定义字体属性-->
+    <declare-styleable name="ThemeTextSize">
+        <attr name="smallSize" format="dimension" />
+        <attr name="normalSize" format="dimension" />
+        <attr name="largeSize" format="dimension" />
+    </declare-styleable>
 </resources>

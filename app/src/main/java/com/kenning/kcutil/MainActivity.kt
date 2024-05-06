@@ -1,5 +1,6 @@
 package com.kenning.kcutil
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,7 +13,10 @@ import com.kenning.kcutil.databinding.ViewTestDialogBinding
 import com.kenning.kcutil.utils.date.DateExtendUtil
 import com.kenning.kcutil.utils.date.Date_Format
 import com.kenning.kcutil.utils.date.formatBy
+import com.kenning.kcutil.utils.datepicker.DatePickerBuilder
+import com.kenning.kcutil.utils.datepicker.DatePickerCenterFragment
 import com.kenning.kcutil.utils.datepicker.IPickerListener
+import com.kenning.kcutil.utils.datepicker.PickerControl
 import com.kenning.kcutil.utils.dialog.easydialog.EasyDialog
 import com.kenning.kcutil.utils.dialog.fragmentdialog.BaseFragmentDialog
 import com.kenning.kcutil.utils.dialog.fragmentdialog.DialogFragmentButtonMode
@@ -45,45 +49,14 @@ class MainActivity : BaseActivity(), IPickerListener {
         loadRootFragment(binding.fcvMain.id, FirstFragment())
 
         binding.fab.setOnClickListener { view ->
-//            lifecycleScope.launch {
-//
-//                val dialog = BaseFragmentDialog(view_body)
-//                    .setTitle("测试")
-//                    .hideTitle(true)
-//                    .cancelAble(true)
-//                    .keyCancelAble(true)
-//                    .setButtonMode(
-//                        DialogFragmentButtonMode("hh"),
-//                        DialogFragmentButtonMode("YY")
-//                    )
-//                view_body.append("分段加载！")
-//                val result = dialog
-//                    .showAsSuspend(
-//                        supportFragmentManager,
-//                        BaseFragmentDialog::class.java.simpleName
-//                    )
-//                if (result.toString() == "YY"){
-//                    ToastUtil.show("click yy")
-//                }else{
-//                    ToastUtil.show("click other")
-//                }
-//
-////                view_body.view1.setOnClickListener {
-////                    dialog.dismiss()
-////                    ToastUtil.show("click view1") }
-////                view_body.view2.setOnClickListener {
-////                    dialog.dismiss()
-////                    ToastUtil.show("click view2") }
-//            }
-            var a = NumBox("3")
-            var b = NumBox(3)
-            if (a >= b){
-                ToastUtil.show(" ${a.get()} >= ${b.get()}")
-            }else if (a == b){
-                ToastUtil.show(" ${a.get()} = ${b.get()}")
-            }else{
-                ToastUtil.show(" ${a.get()} < ${b.get()}")
-            }
+            DatePickerBuilder(this)
+                .setBeginDate(DateExtendUtil.getCurrentDate())
+                .setEndDate(DateExtendUtil.getCurrentDate())//setSingle(false)时,该方法生效
+                .setSingle(false)//是否显示两个日期选择
+                .setNeedChangeState(true)
+                .setRequestCode(111)//返回code(需要在activity/fragment 实现 IPickerListener接口)
+                .setLoaction(PickerControl.ShowLocation.CENTER)//日历显示的位置
+                .start(R.id.fcvMain)//location为PickerControl.ShowLocation.BOTTOM时,只需要start(),显示在页面底部
         }
         binding.tagswitch.setOnSwitchSuspendListener({
             val result = EasyDialog(this@MainActivity).setContentMsg("测试")
@@ -135,11 +108,15 @@ class MainActivity : BaseActivity(), IPickerListener {
     }
 
     override fun onDateChange(requestcode: Int, start: String, end: String): Boolean {
-        binding.tag11.text = start
+        binding.tag11.text = "${start} ${end}"
         return true
     }
     fun getGenericsClass(cls: Class<*>, index: Int): Class<*> {
         val type = cls.genericSuperclass as ParameterizedType
         return type.actualTypeArguments[index] as Class<*>
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
     }
 }

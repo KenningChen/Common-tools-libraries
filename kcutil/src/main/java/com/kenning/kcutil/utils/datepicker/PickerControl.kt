@@ -291,9 +291,13 @@ class PickerControl(var fragment: Fragment) {
                 if (it) {
                     type = "DD"
                     findViewById<View>(R.id.dayonly).visibility = View.VISIBLE
+                    findViewById<View>(R.id.day)?.visibility = View.VISIBLE
+                    findViewById<View>(R.id.day_end)?.visibility = View.VISIBLE
                 } else {
                     type = "MM"
                     findViewById<View>(R.id.dayonly).visibility = View.GONE
+                    findViewById<View>(R.id.day)?.visibility = View.GONE
+                    findViewById<View>(R.id.day_end)?.visibility = View.GONE
                 }
             }
 

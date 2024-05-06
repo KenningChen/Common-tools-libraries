@@ -107,9 +107,9 @@ class DatePickerBuilder {
     fun setLoaction(location: PickerControl.ShowLocation): DatePickerBuilder {
         this.location = location
         //fragmentactivity为调用方时，仅支持下方弹出方式
-        if (activity != null && location == PickerControl.ShowLocation.TOP) {
-            this.location = PickerControl.ShowLocation.BOTTOM
-        }
+//        if (activity != null/* && location == PickerControl.ShowLocation.TOP*/) {
+//            this.location = PickerControl.ShowLocation.BOTTOM
+//        }
         return this
     }
 
@@ -125,6 +125,7 @@ class DatePickerBuilder {
         bundle.putBoolean("isSingleDate", isSingleDate)
 //        bundle.putFloat("alpha",alpha)
 //        bundle.putString("location",location.name)
+        bundle.putBoolean("nonchange", mNonChange)
         bundle.putInt("code", requestCode)
         tagetFragment.arguments = bundle
 
@@ -172,6 +173,7 @@ class DatePickerBuilder {
         bundle.putBoolean("isSingleDate", isSingleDate)
 //        bundle.putFloat("alpha",alpha)
 //        bundle.putString("location",location.name)
+        bundle.putBoolean("nonchange", mNonChange)
         bundle.putInt("code", requestCode)
         tagetFragment.arguments = bundle
 
@@ -198,7 +200,8 @@ class DatePickerBuilder {
             if (containerViewId == -1) {
                 throw RuntimeException("请设置参数:containerViewId")
             }
-            val fm = sourceFragment!!.requireActivity().supportFragmentManager.beginTransaction()
+            val fm = (sourceFragment?.requireActivity()?.supportFragmentManager
+                ?: activity!!.supportFragmentManager).beginTransaction()
             fm.add(containerViewId, build(), null)
                 .addToBackStack(null).commit()
         } else if (location == PickerControl.ShowLocation.CENTER) {
