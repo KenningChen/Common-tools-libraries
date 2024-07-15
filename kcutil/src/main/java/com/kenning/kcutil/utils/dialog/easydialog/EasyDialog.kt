@@ -176,6 +176,15 @@ open class EasyDialog(private var context: Context) {
         return this
     }
 
+    fun setWarningEvent(event: (Boolean)->Unit,@ColorRes warnColor:Int, clearState: Boolean =
+        false):
+            EasyDialog{
+        tools.warningEvent = event
+        tools.clearWarnState = clearState
+        tools.warnTextColor = warnColor
+        return this
+    }
+
     /**设置不再提示*/
     fun withPrompt(index: Int = 0, extendKey: String = ""): EasyDialog {
         reSetDefault()

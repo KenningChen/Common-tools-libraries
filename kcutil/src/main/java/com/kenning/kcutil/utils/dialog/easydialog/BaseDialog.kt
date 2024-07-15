@@ -366,13 +366,17 @@ class BaseDialog : Dialog {
 
                 button.text = item.text
                 button.setOnClickListener {
-                    if (Prompt && promptEventIndex == it.tag.toInt_()) {
-                        tools.setPreferences(
-                            context,
-                            "EasyDialogTiShi",
-                            tools.promptTag,
-                            isCheckNoTishi
-                        )
+                    if (!tools.clearWarnState) {
+                        if (Prompt && promptEventIndex == it.tag.toInt_()) {
+                            tools.setPreferences(
+                                context,
+                                "EasyDialogTiShi",
+                                tools.promptTag,
+                                isCheckNoTishi
+                            )
+                        }
+                    }else{
+                        tools.warningEvent?.invoke(isCheckNoTishi == "true")
                     }
                     mResult = (it as TextView).text.toString()
                     item.click?.invoke(this) ?: dismiss()
@@ -406,13 +410,17 @@ class BaseDialog : Dialog {
             button.layoutParams = params
 
             button.setOnClickListener {
-                if (Prompt) {
-                    tools.setPreferences(
-                        context,
-                        "EasyDialogTiShi",
-                        tools.promptTag,
-                        "$isCheckNoTishi"
-                    )
+                if (!tools.clearWarnState) {
+                    if (Prompt) {
+                        tools.setPreferences(
+                            context,
+                            "EasyDialogTiShi",
+                            tools.promptTag,
+                            "$isCheckNoTishi"
+                        )
+                    }
+                }else{
+                    tools.warningEvent?.invoke(isCheckNoTishi == "true")
                 }
                 mResult = (it as TextView).text.toString()
                 dismiss()
@@ -486,8 +494,11 @@ class BaseDialog : Dialog {
                 holder.getView<View>(R.id.layoutTishi).setOnClickListener {
                     holder.getView<SwitchImageView>(R.id.switchView).performClick()
                 }
-                if (tools.promptMsg.isNotEmpty())
+                if (tools.promptMsg.isNotEmpty()) {
                     holder.setText(R.id.msgTag, tools.promptMsg)
+                    holder.getView<TextView>(R.id.msgTag)
+                        .setTextColor(getColorResource(tools.warnTextColor))
+                }
             }
         }
 

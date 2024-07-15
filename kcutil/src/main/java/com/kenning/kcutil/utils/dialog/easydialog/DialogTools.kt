@@ -3,9 +3,11 @@ package com.kenning.kcutil.utils.dialog.easydialog
 import android.app.Activity
 import android.content.Context
 import android.util.TypedValue
+import androidx.annotation.ColorRes
 import com.kenning.kcutil.R
 import com.kenning.kcutil.utils.math.toInt_
 import com.kenning.kcutil.utils.other.ScreenUtil
+import com.kenning.kcutil.utils.other.getColorResource
 import com.kenning.kcutil.utils.other.getDimensionResource
 
 /**
@@ -80,6 +82,15 @@ class DialogTools {
      * 控件各个边角的圆半径
      */
     fun radius():Int = ScreenUtil.dip2px(6f)
+
+    var warningEvent: ((Boolean)->Unit)? = null
+
+    /**
+     * 清除勾选框的选中状态
+     */
+    var clearWarnState = false
+    @ColorRes
+    var warnTextColor:Int  = getColorResource(R.color.color_333333)
 
     /**
      * 设置本地临时存储数据

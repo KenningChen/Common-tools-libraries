@@ -17,6 +17,7 @@ import com.kenning.kcutil.utils.datepicker.DatePickerBuilder
 import com.kenning.kcutil.utils.datepicker.DatePickerCenterFragment
 import com.kenning.kcutil.utils.datepicker.IPickerListener
 import com.kenning.kcutil.utils.datepicker.PickerControl
+import com.kenning.kcutil.utils.dialog.easydialog.ButtonMode
 import com.kenning.kcutil.utils.dialog.easydialog.EasyDialog
 import com.kenning.kcutil.utils.dialog.fragmentdialog.BaseFragmentDialog
 import com.kenning.kcutil.utils.dialog.fragmentdialog.DialogFragmentButtonMode
@@ -32,6 +33,8 @@ class MainActivity : BaseActivity(), IPickerListener {
 
     //    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+
+    var state = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,10 +63,19 @@ class MainActivity : BaseActivity(), IPickerListener {
         }
         binding.tagswitch.setOnSwitchSuspendListener({
             val result = EasyDialog(this@MainActivity).setContentMsg("测试")
+                .setButtonMode(
+                    ButtonMode("取消"),
+                    ButtonMode("确定")
+                )
+                .withPrompt(1,promptMsg="提前生单")
+                .setWarningEvent({
+                    state = it.toString()
+                    //ToastUtil.show("提前生单$it",15000)
+                }, R.color.color_00ABF3,true)
                 .buildAsSuspend()
             true
         }) {
-            ToastUtil.show("成功了",15000)
+            ToastUtil.show("成功了$state",15000)
 //
 //            TTSUtil.getInstance()?.playText("拣货货位A100-1")
         }
