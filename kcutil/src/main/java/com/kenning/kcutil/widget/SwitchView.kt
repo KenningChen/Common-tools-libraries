@@ -1,6 +1,7 @@
 package com.kenning.kcutil.widget
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
@@ -221,5 +222,17 @@ class SwitchView @JvmOverloads constructor(
 
     fun setOnDrawable(mNormalDrawable: Drawable?) {
         mSwitchView.setOnDrawable(mNormalDrawable)
+    }
+
+    fun setTextColor(color: Int){
+        mTextView?.setTextColor(color)
+    }
+
+    fun setOffDrawableTint(color: Int){
+        mNormalDrawable?.setTintList(ColorStateList.valueOf(color))
+    }
+
+    fun setOnDrawableTint(color: Int){
+        mPressedDrawable?.setTintList(ColorStateList.valueOf(color))
     }
 }
