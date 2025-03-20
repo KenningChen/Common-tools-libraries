@@ -33,7 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name="com.reduxdemo.ReduxTestAct" />-->
 
         <provider android:name="androidx.core.content.FileProvider" android:grantUriPermissions="true" android:exported="false"
             android:authorities="com.kenning.kcutil.provider">

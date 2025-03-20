@@ -6,8 +6,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
-// Redux 插件
-apply plugin: 'ceneax.app.plugin.redux'
 
 android {
     compileSdk 32
@@ -29,11 +27,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11
+        jvmTarget = '1.8'
     }
     buildFeatures {
         viewBinding true
@@ -66,9 +64,4 @@ dependencies {
 //    api 'com.belerweb:pinyin4j:2.5.0'
 //
     implementation project(path: ':kcutil')
-
-    // Redux 状态管理框架
-    kapt "com.github.ceneax.Redux:compiler:0.2.8"
-
-    api "com.github.ceneax.Redux:redux:0.2.8"
 }

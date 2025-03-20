@@ -1,8 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     dependencies {
-        // Redux 插件
-        classpath "com.github.ceneax.Redux:plugin:0.2.0"
+
+
     }
 }
 plugins {
