@@ -224,14 +224,17 @@ class SwitchView @JvmOverloads constructor(
         mSwitchView.setOnDrawable(mNormalDrawable)
     }
 
+    // 设置说明文本的文字颜色
     fun setTextColor(color: Int){
         mTextView?.setTextColor(color)
     }
 
+    // 设置未选中状态图片的tint
     fun setOffDrawableTint(color: Int){
         mNormalDrawable?.setTintList(ColorStateList.valueOf(color))
     }
 
+    // 设置选中状态图片的tint
     fun setOnDrawableTint(color: Int){
         mPressedDrawable?.setTintList(ColorStateList.valueOf(color))
     }
