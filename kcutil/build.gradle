@@ -30,11 +30,11 @@ afterEvaluate {
 }
 
 android {
-    compileSdk 34
+    compileSdk 30
 
     defaultConfig {
         minSdk 21
-        targetSdk 34
+        targetSdk 30
         versionCode 1
         versionName "1.0"
 
